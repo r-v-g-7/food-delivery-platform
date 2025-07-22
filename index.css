@@ -1,3 +1,91 @@
-#heading {
-    color: rebeccapurple;
+html {
+  scroll-behavior: smooth;
 }
+
+
+body {
+    background-color: #F5F5F7;
+    color: #333333;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+}
+
+.app-logo {
+    width: 100px;
+}
+
+
+.header-container>.nav-items>ul>li {
+    list-style-type: none;
+    padding: 20px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.header-container>.nav-items>ul {
+    display: flex;
+}
+
+.header-container>.nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.restaurant-img {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.card-container {
+    border-radius: 15px;
+    width: 300px;
+    background-color: #ffffff;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: grid;
+}
+
+.card-info p {
+    margin: 0px;
+}
+
+.card-info h4 {
+    margin: 0px;
+    margin-bottom: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+
+.card-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-info {
+    padding: 15px;
+}
+
+
+.restaurant-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+
