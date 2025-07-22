@@ -1,6 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-const resArr = [
+export const resArr = [
   {
     "info": {
       "id": "615748",
@@ -1520,79 +1518,6 @@ const resArr = [
   }
 ]
 
-// Import the image from the same folder
+export const LOGO_URL = "https://png.pngtree.com/template/20191014/ourmid/pngtree-pin-food-delivery-map-location-delivery-logo-concept-image_318151.jpg"
 
-const Header = () => {
-  return (
-    <div className="header-container">
-      {/* The final fix is to add .default to the logo variable */}
-      <img className="app-logo" src="https://png.pngtree.com/template/20191014/ourmid/pngtree-pin-food-delivery-map-location-delivery-logo-concept-image_318151.jpg" />
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-
-    </div>
-  );
-};
-
-// { name, areaName, cuisines, avgRating, deliveryTime, cloudinaryImageId }
-
-
-const RestaurantCard = (props) => {
-  const { resData } = props
-  const { info } = resData  
-  const { name, areaName, cuisines, avgRating, cloudinaryImageId } = info
-  const { sla } = info 
-  const { deliveryTime } = sla 
-  console.log(cloudinaryImageId)
-
-  return <div className="card-container">
-    <img className="restaurant-img" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId} alt="adil-hotel-logo" />
-    <div className="card-info">
-    <h4 className="restaurant-name">{name}</h4>
-    <p className="restaurant-rating">⭐ {avgRating} / 5</p>
-    <hr />
-    <p className="restaurant-cuisines">🍽️ {cuisines.join(", ")}</p>
-    <hr />
-    <p className="restaurant-area">📍 {areaName}</p>
-    <hr />
-    <p className="restaurant-delivery">🚚 {deliveryTime} mins</p>
-    </div>
-
-  </div>
-}
-
-
-
-const Body = () => (
-  <div className="body-container">
-    <h3>search</h3>
-    <div className="restaurant-cards-container">
-      {resArr.map(res => <RestaurantCard key = {res.info.id} resData={res}/>)}
-    </div>
-
-  </div>
-
-)
-
-const App = () => {
-  return (
-    <div className="app-container">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-
-const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
-root.render(<App />);
-
-
-
+export const CLOUDINARY_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
