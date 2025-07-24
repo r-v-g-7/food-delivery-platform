@@ -6,7 +6,6 @@ export const RestaurantCard = (props) => {
   const { name, areaName, cuisines, avgRating, cloudinaryImageId } = info
   const { sla } = info 
   const { deliveryTime } = sla 
-  console.log(cloudinaryImageId)
 
   return <div className="card-container">
     <img className="restaurant-img" src={CLOUDINARY_URL + cloudinaryImageId} alt="adil-hotel-logo" />

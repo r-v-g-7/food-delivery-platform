@@ -74,6 +74,7 @@ body {
 .card-container:hover {
     transform: scale(1.03);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid black;
 }
 
 .card-info {
@@ -88,4 +89,57 @@ body {
     gap: 2rem;
 }
 
+
+
+/* --- Container to Center the Button --- */
+.top-rated-button-container {
+  display: flex;
+  justify-content: center; /* Horizontally centers the button */
+  padding: 2rem 0;         /* Adds some nice spacing above and below */
+}
+
+/* --- The Cool, Animated Gradient Button --- */
+.top-rated-button {
+  /* --- Base Styles --- */
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px; /* Gives it the modern pill shape */
+  font-family: inherit; /* Inherits the nice font from your body tag */
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+
+  /* --- The Magic Gradient --- */
+  background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9f43, #ee5253);
+  background-size: 400% 400%;
+  
+  /* --- Animation --- */
+  animation: gradient-shimmer 15s ease infinite;
+  
+  /* --- Smooth Transitions & Shadow --- */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Hover Effect --- */
+.top-rated-button:hover {
+  /* Lift the button up slightly */
+  transform: translateY(-3px);
+  /* Make the shadow more pronounced */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* --- The Animation Keyframes --- */
+@keyframes gradient-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
