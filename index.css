@@ -90,47 +90,37 @@ body {
 }
 
 
-
-/* --- Container to Center the Button --- */
 .top-rated-button-container {
   display: flex;
-  justify-content: center; /* Horizontally centers the button */
-  padding: 2rem 0;         /* Adds some nice spacing above and below */
+  justify-content: center; 
+  padding: 2rem 0;         
 }
 
-/* --- The Cool, Animated Gradient Button --- */
+
 .top-rated-button {
-  /* --- Base Styles --- */
   padding: 15px 30px;
   border: none;
-  border-radius: 50px; /* Gives it the modern pill shape */
-  font-family: inherit; /* Inherits the nice font from your body tag */
+  border-radius: 50px;
+  font-family: inherit; 
   font-weight: bold;
   font-size: 1rem;
   color: white;
   cursor: pointer;
-
-  /* --- The Magic Gradient --- */
   background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9f43, #ee5253);
   background-size: 400% 400%;
   
   /* --- Animation --- */
   animation: gradient-shimmer 15s ease infinite;
-  
-  /* --- Smooth Transitions & Shadow --- */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Hover Effect --- */
+
 .top-rated-button:hover {
-  /* Lift the button up slightly */
   transform: translateY(-3px);
-  /* Make the shadow more pronounced */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* --- The Animation Keyframes --- */
 @keyframes gradient-shimmer {
   0% {
     background-position: 0% 50%;
@@ -143,3 +133,63 @@ body {
   }
 }
 
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.shimmer-card {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 300px;
+  height: 397.8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.shimmer-card::before {
+  content: '';
+  height: 180px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: shimmer 2s infinite linear;
+}
+
+.shimmer-card::after {
+  content: '';
+  height: 20px;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: shimmer 2s infinite linear;
+  animation-delay: 0.2s;
+  width: 70%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

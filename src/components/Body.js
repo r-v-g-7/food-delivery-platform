@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { RestaurantCard } from "./RestaurantCard"
-import { resArr } from "./mockData"
 import { SWIGGY_API } from "./mockData"
+import { Shimmer } from "./Shimmer"
 
 export const Body = () => {
 
@@ -34,7 +34,9 @@ export const Body = () => {
         }
     }
 
-    return (
+
+
+    return listOfRestaurant.length === 0 ? <Shimmer /> : (
         <div className="body-container">
             <div className="top-rated-button-container">
                 <button className="top-rated-button" onClick={() => {
@@ -44,7 +46,6 @@ export const Body = () => {
                 }
                 >Show Top Rated ⭐</button>
             </div>
-            {console.log(listOfRestaurant)}
             <div className="restaurant-cards-container">
                 {console.log(listOfRestaurant)}
                 {listOfRestaurant.map((res, index) => <RestaurantCard key={`${res.info.id}-${index}`} resData={res} />)}
