@@ -2,7 +2,7 @@ import { LOGO_URL } from "./mockData";
 import { useState } from "react";
 
 export const Header = () => {
-  const [loginStatus, setLoginStstus] = useState("Login")
+  const [loginStatus, setLoginStatus] = useState("Login")
 
   return (
     <div className="header-container">
@@ -17,8 +17,8 @@ export const Header = () => {
           <button className="login-status" onClick={() => {
             {
               if (loginStatus === "Login") {
-                setLoginStstus("Logout")
-              } else setLoginStstus("Login")
+                setLoginStatus("Logout")
+              } else setLoginStatus("Login")
             }
           }}>{loginStatus}</button>
         </ul>
