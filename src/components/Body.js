@@ -5,12 +5,17 @@ import { Shimmer } from "./Shimmer"
 
 export const Body = () => {
 
+    const [allRestaurants, setAllRestaurants] = useState([]) 
     const [listOfRestaurant, setListOfRestaurant] = useState([]) // filterRestaurant is the magic varible created by the useState() function along with setFilterRestaurant thing which will be eventually used to trigger the useState()
     const [searchfilter, setSearchFilter] = useState("") 
 
     useEffect(() => {
         fetchData()
     }, [])
+
+    useEffect(() => {
+        
+    }, [searchfilter])
 
     const fetchData = async () => {
         try {
@@ -27,12 +32,14 @@ export const Body = () => {
                 (card) => card.card.card.gridElements.infoWithStyle.restaurants
             );
 
-
             setListOfRestaurant(allRestaurants)
+            setAllRestaurants(allRestaurants)
 
         } catch (err) {
             console.log("Error:" + err)
+        
         }
+        
     }
 
 
@@ -42,14 +49,13 @@ export const Body = () => {
             <div className="search-container">
                 <input className="search-input" value={searchfilter} onChange={(e) => setSearchFilter(e.target.value)} />
                 <button className="search-button" onClick={() => {
-                    const filteredRestaurant = listOfRestaurant.filter((res) => {
+                    setListOfRestaurant(allRestaurants)
+                    const filteredRestaurant = allRestaurants.filter((res) => {
                         return res.info.name.toLowerCase().includes(searchfilter.toLowerCase())
                     })
-                    console.log(filteredRestaurant);
-                    
                     setListOfRestaurant(filteredRestaurant)
                 }}>Search</button>
-            </div>
+            </div> 
             <div className="top-rated-button-container">
                 <button className="top-rated-button" onClick={() => {
                     let filteredRestaurant = listOfRestaurant.filter(res => res.info.avgRating > 4.2)
@@ -66,4 +72,4 @@ export const Body = () => {
     )
 }
 
-
+ 
