@@ -1,8 +1,9 @@
 import ReactDOM from "react-dom/client";
 import { Header } from "./components/Header";
 import { Body } from "./components/Body";
-import { createBrowserRouter } from "react-router-dom";
-import { About } from "./components/About";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { About } from "./components/About.js";
+import { Contact } from "./components/Contact.js";
 
 
 const App = () => {
@@ -20,14 +21,14 @@ const appRouter = createBrowserRouter([
     path: "/",
     element: <App />
   }, 
-  // {
-  //   path: "/about",
-  //   element: <About />
-  // }
-  // {
-  //   path: "/contactUs",
-  //   element: <ContactUs />
-  // }, 
+  {
+    path: "/about",
+    element: <About />
+  },
+  {
+    path: "/contact",
+    element: <Contact />
+  }, 
   // {
   //   path: "/cart",
   //   element: <Cart />
@@ -36,7 +37,7 @@ const appRouter = createBrowserRouter([
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
-root.render(<App />);
+root.render(<RouterProvider router={appRouter}/>)
 
 
 
