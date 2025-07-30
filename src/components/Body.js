@@ -62,7 +62,7 @@ export const Body = () => {
                     setListOfRestaurant(filteredRestaurant)
                 }
                 }
-                >Show Top Rated ⭐</button>
+                >Show Top Rated Restaurants ⭐</button>
             </div>
             <div className="restaurant-cards-container">
                 {listOfRestaurant.map((res, index) => <RestaurantCard key={`${res.info.id}-${index}`} resData={res} />)}

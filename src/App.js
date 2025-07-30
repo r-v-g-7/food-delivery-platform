@@ -4,6 +4,7 @@ import { Body } from "./components/Body";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { About } from "./components/About.js";
 import { Contact } from "./components/Contact.js";
+import { Error } from "./components/Error.js";
 
 
 const App = () => {
@@ -19,8 +20,9 @@ const App = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />
-  }, 
+    element: <App />,
+    errorElement: <Error />
+  },
   {
     path: "/about",
     element: <About />
@@ -28,7 +30,7 @@ const appRouter = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />
-  }, 
+  }
   // {
   //   path: "/cart",
   //   element: <Cart />
@@ -37,7 +39,7 @@ const appRouter = createBrowserRouter([
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
-root.render(<RouterProvider router={appRouter}/>)
+root.render(<RouterProvider router={appRouter} />)
 
 
 
