@@ -1,5 +1,6 @@
 import { LOGO_URL } from "./mockData";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [loginStatus, setLoginStatus] = useState("Login")
@@ -10,10 +11,12 @@ export const Header = () => {
       <img className="app-logo" src={LOGO_URL} />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About Us</Link></li>
+          <li><Link to="/contact">Contact Us</Link></li>
+          <li><Link to="">Cart</Link></li>
+
+
           <button className="login-status" onClick={() => {
             {
               if (loginStatus === "Login") {

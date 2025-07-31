@@ -2,7 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
 body {
     background-color: #F5F5F7;
     color: #333333;
@@ -23,22 +22,61 @@ body {
     width: 100px;
 }
 
-
-.header-container>.nav-items>ul>li {
-    list-style-type: none;
-    padding: 20px;
-    font-weight: bold;
-    font-size: larger;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.header-container>.nav-items>ul {
-    display: flex;
+/* Align nav items horizontally */
+.header-container > .nav-items > ul {
+  display: flex;
+  gap: 60px;
+  margin: 0;
+  padding: 0;
 }
 
-.header-container>.nav-items {
-    display: flex;
-    align-items: center;
+/* Remove default list styles and add spacing */
+.header-container > .nav-items > ul > li {
+  list-style-type: none;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 18px;
+  position: relative;
 }
+
+/* Style the <Link> tags */
+.header-container .nav-items ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.header-container .nav-items ul li a:hover {
+  color: #ff5722;
+}
+
+/* Button styling (login/logout) */
+.header-container .nav-items ul li .login-status {
+  background-color: #ff5722;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header-container .nav-items ul li .login-status:hover {
+  background-color: #e64a19;
+}
+
 
 .restaurant-img {
     width: 100%;
@@ -93,7 +131,7 @@ body {
 .top-rated-button-container {
   display: flex;
   justify-content: center; 
-  padding-bottom: 2rem;         
+  padding-bottom: 2rem;
 }
 
 
@@ -109,7 +147,6 @@ body {
   background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9f43, #ee5253);
   background-size: 400% 400%;
   
-  /* --- Animation --- */
   animation: gradient-shimmer 15s ease infinite;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -195,17 +232,22 @@ body {
 }
 
 .login-status {
-  background: linear-gradient(45deg, #007BFF, #0056b3);
-  color: white;
-  padding: 12px 24px;
-  margin-right: 15px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+    background: linear-gradient(45deg, #007BFF, #0056b3);
+    color: white;
+    padding: 12px 0;
+    margin-right: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    margin-left: auto;
+    width: 110px;
+    text-align: center;
+    margin-left: 320px;
 }
 
 .login-status:hover {
@@ -265,6 +307,3 @@ body {
 .search-button:hover {
     background-color: #e06c0d;
 }
-
-
-
