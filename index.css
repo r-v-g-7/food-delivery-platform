@@ -307,3 +307,167 @@ body {
 .search-button:hover {
     background-color: #e06c0d;
 }
+
+
+
+
+
+
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes background-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.page-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem; /* Further reduced padding */
+  min-height: 100vh;
+  width: 100%;
+  background-color: #F5F5F7; /* Solid background color for the page */
+}
+
+.content-wrapper {
+  max-width: 680px; /* Further reduced max-width for a compact view */
+  width: 100%;
+  animation: fadeIn 0.9s ease-out forwards;
+}
+
+/* Main Info Card Styling */
+.info-card {
+  border-radius: 20px; /* Crisper radius */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+  color: #fff; /* Text color changed to white for contrast */
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: background-pan 20s ease infinite;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.info-card:hover {
+  transform: perspective(1200px) rotateY(5deg) rotateX(2deg) scale(1.02);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+}
+
+.info-header {
+  padding: 1.5rem 1.75rem; /* Reduced padding */
+}
+
+.res-name {
+  font-size: 2.25rem; /* Reduced font size */
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+
+.res-cuisines {
+  font-size: 0.95rem; /* Reduced font size */
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.25rem;
+}
+
+.res-location {
+  font-size: 0.85rem; /* Reduced font size */
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.details-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Reduced gap */
+  padding: 1rem 1.75rem; /* Reduced padding */
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem; /* Reduced font size */
+  font-weight: 500;
+  color: #fff;
+}
+
+.detail-item svg {
+  width: 14px; /* Smaller icon */
+  height: 14px; /* Smaller icon */
+  margin-right: 0.5rem;
+  color: #fff;
+}
+.detail-item strong {
+    font-weight: 700;
+}
+
+/* Deals Section Styling */
+.deals-section {
+  margin-top: 2rem; /* Reduced margin */
+}
+
+.deals-heading {
+  font-size: 1.25rem; /* Reduced font size */
+  font-weight: 700;
+  color: #1a1a1a; /* Dark color for visibility on grey background */
+  margin-bottom: 0.75rem; /* Reduced margin */
+}
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem; /* Reduced gap */
+}
+
+.deal-card {
+  background: linear-gradient(135deg, #ffc9c9, #ffb3b3);
+  border-radius: 12px; /* Crisper radius */
+  padding: 8px; /* Reduced padding */
+  color: #800f2f;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(128, 15, 47, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.deal-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 10px 20px rgba(128, 15, 47, 0.2);
+}
+
+.deal-icon {
+  display: grid;
+  place-items: center;
+  margin-right: 0.75rem;
+  background: #fff0f3;
+  width: 32px; /* Smaller icon container */
+  height: 32px; /* Smaller icon container */
+  border-radius: 8px; /* Crisper radius */
+}
+.deal-icon svg {
+    color: #c9184a;
+}
+
+.deal-text {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .page-container { padding: 2rem 1rem; }
+  .res-name { font-size: 2rem; } /* Reduced font size */
+  .details-footer { flex-direction: column; align-items: flex-start; }
+}
