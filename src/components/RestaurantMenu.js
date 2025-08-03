@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Shimmer } from "./Shimmer";
 import { MENU_API } from "./mockData";
 import { useParams } from "react-router";
+import ScrollToTop from "./ScrollToTop";
 
 export const RestaurantMenu = () => {
 
@@ -12,6 +13,8 @@ export const RestaurantMenu = () => {
   useEffect(() => {
     fetchData()
   }, [])
+
+  ScrollToTop()
 
 
   const fetchData = async () => {
