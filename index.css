@@ -542,3 +542,148 @@ a {
 .card-info p:nth-of-type(4) {
     margin: 0;
 }
+
+div.restaurant-cards-container {
+    padding: 0;
+}
+
+
+
+
+.cj-footer {
+  background-color: #f8f9fa; /* Very light grey background */
+  color: #495057; /* Soft dark grey for text */
+  padding: 60px 20px 20px;
+  font-family: 'Chakra Petch', sans-serif;
+  border-top: 3px solid #dee2e6; /* Simple, light border */
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 220px;
+  margin-bottom: 30px;
+}
+
+.footer-column h3 {
+  color: #212529; /* Black for sharp headings */
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: #495057;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-links a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.app-section p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  color: #495057;
+  border: 2px solid #ced4da;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+}
+
+.social-links a:hover {
+  color: #ffffff;
+  background-color: #212529;
+  border-color: #212529;
+}
+
+.app-download .app-button {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #495057;
+  margin-bottom: 15px;
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.app-download .app-button:hover {
+  border-color: #495057;
+  background-color: #f8f9fa;
+}
+
+.app-button span {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #212529;
+}
+
+.app-button small {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-top: 4px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid #e9ecef;
+}
+
+.footer-locations p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin: 0 0 15px 0;
+}
+
+.footer-locations strong {
+    color: #495057;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin: 0;
+}

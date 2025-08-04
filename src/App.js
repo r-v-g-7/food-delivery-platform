@@ -6,13 +6,13 @@ import { About } from "./components/About.js";
 import { Contact } from "./components/Contact.js";
 import { Error } from "./components/Error.js";
 import { RestaurantMenu } from "./components/RestaurantMenu.js";
-import { useParams } from "react-router-dom";
-
+import CJFooter from "./components/CJFooter.js";
 const App = () => {
   return (
     <div className="app-container">
       <Header />
       <Outlet />
+      <CJFooter />
     </div>
   );
 };

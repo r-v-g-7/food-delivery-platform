@@ -10,13 +10,17 @@ export const Body = () => {
     const [listOfRestaurant, setListOfRestaurant] = useState([]) // filterRestaurant is the magic varible created by the useState() function along with setFilterRestaurant thing which will be eventually used to trigger the useState()
     const [searchfilter, setSearchFilter] = useState("")
 
+    const handleSearch = () => {
+        const filteredRestaurant = allRestaurants.filter((res) =>
+            res.info.name.toLowerCase().includes(searchfilter.toLowerCase())
+        );
+        setListOfRestaurant(filteredRestaurant);
+    };
+
+
     useEffect(() => {
         fetchData()
     }, [])
-
-    useEffect(() => {
-
-    }, [searchfilter])
 
     const fetchData = async () => {
         try {
@@ -45,7 +49,6 @@ export const Body = () => {
 
             setListOfRestaurant(uniqueRestaurants)
             setAllRestaurants(uniqueRestaurants)
-            console.log(uniqueRestaurants);
 
 
         } catch (err) {
@@ -60,13 +63,9 @@ export const Body = () => {
     return listOfRestaurant.length === 0 ? <Shimmer /> : (
         <div className="body-container">
             <div className="search-container">
-                <input className="search-input" value={searchfilter} onChange={(e) => setSearchFilter(e.target.value)} />
+                <input className="search-input" value={searchfilter} onChange={(e) => setSearchFilter(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { handleSearch()} }} />
                 <button className="search-button" onClick={() => {
-                    setListOfRestaurant(allRestaurants)
-                    const filteredRestaurant = allRestaurants.filter((res) => {
-                        return res.info.name.toLowerCase().includes(searchfilter.toLowerCase())
-                    })
-                    setListOfRestaurant(filteredRestaurant)
+                    handleSearch()
                 }}>Search</button>
             </div>
             <div className="top-rated-button-container">
