@@ -23,7 +23,7 @@ body {
 }
 
 .app-logo {
-    width: 100px;
+    width: 90px;
 }
 
 .header-container>.nav-items>ul {
@@ -692,3 +692,6 @@ div.restaurant-cards-container {
 .cj-footer {
     margin-top: 50px;
 }
+
+
+
