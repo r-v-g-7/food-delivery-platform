@@ -3,6 +3,7 @@ import { RestaurantCard } from "./RestaurantCard"
 import { SWIGGY_API } from "./mockData"
 import { Shimmer } from "./Shimmer"
 import { Link } from "react-router-dom"
+import Loading from "./Loading"
 
 export const Body = () => {
 
@@ -60,10 +61,14 @@ export const Body = () => {
 
 
 
-    return listOfRestaurant.length === 0 ? <Shimmer /> : (
+    return listOfRestaurant.length === 0 ? (
+        <>
+            <Loading />
+        </>
+    ) : (
         <div className="body-container">
             <div className="search-container">
-                <input className="search-input" value={searchfilter} onChange={(e) => setSearchFilter(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { handleSearch()} }} />
+                <input className="search-input" value={searchfilter} onChange={(e) => setSearchFilter(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { handleSearch() } }} />
                 <button className="search-button" onClick={() => {
                     handleSearch()
                 }}>Search</button>
