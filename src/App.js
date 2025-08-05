@@ -8,7 +8,7 @@ import { Error } from "./components/Error.js";
 import { RestaurantMenu } from "./components/RestaurantMenu.js";
 import CJFooter from "./components/CJFooter.js";
 import useUserOnlineStatus from "./utils/useUserOnlineStatus.js";
-
+import InternetErrorHandler from "./components/InternetErrorHandler.js";
 
 
 
@@ -17,11 +17,7 @@ const App = () => {
   console.log(status);
   
   if (status === "offline") {
-    return (
-      <h2 style={{ textAlign: "center", marginTop: "50px" }}>
-        🔴 You are Offline — Please check your internet connection
-      </h2>
-    );
+    return <InternetErrorHandler />
   }
   return (
     <div className="app-container">
