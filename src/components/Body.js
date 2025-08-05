@@ -61,11 +61,7 @@ export const Body = () => {
 
 
 
-    return listOfRestaurant.length === 0 ? (
-        <>
-            <Loading />
-        </>
-    ) : (
+    return listOfRestaurant.length === 0 ? <Loading /> : (
         <div className="body-container">
             <div className="search-container">
                 <input className="search-input" value={searchfilter} onChange={(e) => setSearchFilter(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { handleSearch() } }} />

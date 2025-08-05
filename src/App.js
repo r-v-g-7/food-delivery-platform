@@ -7,13 +7,29 @@ import Contact from "./components/Contact.js";
 import { Error } from "./components/Error.js";
 import { RestaurantMenu } from "./components/RestaurantMenu.js";
 import CJFooter from "./components/CJFooter.js";
+import useUserOnlineStatus from "./utils/useUserOnlineStatus.js";
+
+
+
+
 const App = () => {
+  const status = useUserOnlineStatus()
+  console.log(status);
+  
+  if (status === "offline") {
+    return (
+      <h2 style={{ textAlign: "center", marginTop: "50px" }}>
+        🔴 You are Offline — Please check your internet connection
+      </h2>
+    );
+  }
   return (
     <div className="app-container">
       <Header />
       <Outlet />
       <CJFooter />
     </div>
+
   );
 };
 
