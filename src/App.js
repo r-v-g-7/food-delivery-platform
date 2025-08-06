@@ -2,13 +2,16 @@ import ReactDOM from "react-dom/client";
 import { Header } from "./components/Header";
 import { Body } from "./components/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import About from "./components/About.js";
-import Contact from "./components/Contact.js";
 import { Error } from "./components/Error.js";
-import { RestaurantMenu } from "./components/RestaurantMenu.js";
 import CJFooter from "./components/CJFooter.js";
 import useUserOnlineStatus from "./utils/useUserOnlineStatus.js";
 import InternetErrorHandler from "./components/InternetErrorHandler.js";
+import { lazy, Suspense } from "react";
+import Loading from "./components/Loading.js";
+
+const About = lazy(() => import("./components/About.js"))
+const Contact = lazy(() => import("./components/Contact.js"))
+const RestaurantMenu = lazy(() => import("./components/RestaurantMenu.js")) 
 
 
 
@@ -39,15 +42,15 @@ const appRouter = createBrowserRouter([
       element: <Body />
     }, {
       path: "about",
-      element: <About />
+      element: <Suspense><About /></Suspense>
     },
     {
       path: "/contact",
-      element: <Contact />
+      element: <Suspense><Contact /></Suspense>
     },
     {
       path: "/restaurant/:resId",
-      element: <RestaurantMenu />
+      element: <Suspense fallback={<Loading />}><RestaurantMenu /></Suspense>
     }
     ],
     errorElement: <Error />

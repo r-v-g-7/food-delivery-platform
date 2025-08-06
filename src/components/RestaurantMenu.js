@@ -3,7 +3,8 @@ import { useParams } from "react-router";
 import ScrollToTop from "./ScrollToTop";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Loading from "./Loading";
-export const RestaurantMenu = () => {
+
+const RestaurantMenu = () => {
 
   const {resId} = useParams()
   const {restaurantInfo, dishData} = useRestaurantMenu(resId)
@@ -100,4 +101,4 @@ export const RestaurantMenu = () => {
 
 
 
-
+export default RestaurantMenu
