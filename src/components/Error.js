@@ -3,7 +3,7 @@ import { useRouteError } from "react-router-dom";
 export const Error = () => {
   const err = useRouteError();
   console.error(err); 
-
+ 
   return (
     <div className="error-container" style={{ padding: "2rem", textAlign: "center" }}>
       <h1>Oops! Something went wrong 😢</h1>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import { MENU_API } from "../components/mockData"
-import { logV6DeprecationWarnings } from "react-router/dist/lib/deprecations"
 
 const useRestaurantMenu = (resId) => {
-    const[resInfo, setResinfo] = useState(null) 
+    const[restaurantInfo, setRestaurantinfo] = useState(null) 
+    const[dishData, setDishData] = useState(null) 
 
     useEffect(() => {
         fetchData() 
@@ -11,13 +11,12 @@ const useRestaurantMenu = (resId) => {
 
     const fetchData = async () => {
         const data = await fetch(MENU_API + resId) 
-        const json = await data.json() 
-        console.log(json); 
-        setResinfo(json.data)
-        
+        const json = await data.json()
+        setRestaurantinfo(json.data)
+        setDishData(json.data)
     }
 
-
-
-    return resInfo
+    return { restaurantInfo, dishData }
 }
+
+export default useRestaurantMenu

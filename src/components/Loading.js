@@ -12,6 +12,7 @@ const styles = `
   font-family: 'Inter', sans-serif;
   background-color: #f4f4f5; /* Changed to a light grey */
   overflow: hidden;
+  margin-bottom: 120px;
 }
 
 .animation-container {
@@ -115,7 +116,7 @@ const loadingMessages = [
   "INCOMING!",
 ];
 
-const Loader = () => {
+const FoodDeliveryLoader = () => {
   const [currentText, setCurrentText] = useState(loadingMessages[0]);
   const [textOpacity, setTextOpacity] = useState(1);
 
@@ -165,7 +166,7 @@ const Loader = () => {
 export default function Loading() {
   return (
     <div style={{ height: '100vh', display: 'grid', placeItems: 'center', backgroundColor: '#f4f4f5' }}>
-      <Loader />
+      <FoodDeliveryLoader />
     </div>
   );
 }

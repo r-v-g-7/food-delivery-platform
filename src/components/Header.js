@@ -5,6 +5,7 @@ import useUserOnlineStatus from "../utils/useUserOnlineStatus";
 
 export const Header = () => {
   const [loginStatus, setLoginStatus] = useState("Login")
+  const onlineStatus = useUserOnlineStatus()
 
   return (
     <div className="header-container">
@@ -12,7 +13,7 @@ export const Header = () => {
       <img className="app-logo" src={LOGO_URL} />
       <div className="nav-items">
         <ul>
-          <li>{useUserOnlineStatus() === "offline" ? "🔴 Offline" : "🟢 Online"}</li>
+          <li className="user-status">{onlineStatus === "offline" ? "🔴 Offline" : "🟢 Online"}</li>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About Us</Link></li>
           <li><Link to="/contact">Contact Us</Link></li>

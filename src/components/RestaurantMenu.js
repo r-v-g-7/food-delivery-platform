@@ -1,29 +1,13 @@
-import { useState, useEffect } from "react";
 import { Shimmer } from "./Shimmer";
-import { MENU_API } from "./mockData";
 import { useParams } from "react-router";
 import ScrollToTop from "./ScrollToTop";
-
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import Loading from "./Loading";
 export const RestaurantMenu = () => {
 
   const {resId} = useParams()
-  const [restaurantInfo, setRestaurantInfo] = useState(null)
-  const [dishData, setDishData] = useState(null)
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
+  const {restaurantInfo, dishData} = useRestaurantMenu(resId)
   ScrollToTop()
-
-
-  const fetchData = async () => {
-    const data = await fetch(MENU_API + resId)
-    const json = await data.json()
-    setRestaurantInfo(json.data)
-    setDishData(json.data)
-  }
-
 
   const allItemInfos = dishData?.cards
     ?.find(res => res?.groupedCard?.cardGroupMap?.REGULAR?.cards)
@@ -38,7 +22,7 @@ export const RestaurantMenu = () => {
 
   const IMG_CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
 
-  return restaurantInfo === null ? <Shimmer /> :
+  return restaurantInfo === null ? <Loading /> :
     (
       <div className="container">
         <div className="info-card">

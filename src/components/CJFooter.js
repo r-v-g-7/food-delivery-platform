@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CJFooter = () => {
   return (
     <footer className="cj-footer">
