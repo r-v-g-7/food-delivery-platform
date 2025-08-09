@@ -8,10 +8,10 @@ export const RestaurantCard = (props) => {
   const { deliveryTime } = sla 
 
   return <div className="card-container">
-    <img className="restaurant-img" src={CLOUDINARY_URL + cloudinaryImageId} alt="adil-hotel-logo" />
-    <div className="card-info">
+    <img className="restaurant-img transition-transform duration-300 ease-in-out hover:scale-110" src={CLOUDINARY_URL + cloudinaryImageId} alt="adil-hotel-logo" />
+    <div className="card-info transition-transform duration-300 ease-in-out hover:scale-110">
     <h4 className="restaurant-name">{name}</h4>
-    <p className="restaurant-rating">⭐ {avgRating} / 5</p>
+    <p className="restaurant-rating">⭐ {avgRating}</p>
     <hr />
     <p className="restaurant-cuisines">🍽️ {cuisines.join(", ")}</p>
     <hr />
