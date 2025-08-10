@@ -3,6 +3,7 @@ import { RestaurantCard } from "./RestaurantCard"
 import { SWIGGY_API } from "./mockData"
 import { Link } from "react-router-dom"
 import Loading from "./Loading"
+import { WithPromotedLabel } from "./RestaurantCard"
 
 
 export const Body = () => {
@@ -11,13 +12,14 @@ export const Body = () => {
     const [listOfRestaurant, setListOfRestaurant] = useState([]) // filterRestaurant is the magic varible created by the useState() function along with setFilterRestaurant thing which will be eventually used to trigger the useState()
     const [searchfilter, setSearchFilter] = useState("")
 
+    const PromotedRestaurantCard = WithPromotedLabel(RestaurantCard)
+
     const handleSearch = () => {
         const filteredRestaurant = allRestaurants.filter((res) =>
             res.info.name.toLowerCase().includes(searchfilter.toLowerCase())
         );
         setListOfRestaurant(filteredRestaurant);
     };
-
 
     useEffect(() => {
         fetchData()
@@ -106,7 +108,9 @@ export const Body = () => {
                 {console.log(listOfRestaurant)}
                 {listOfRestaurant.map((res, index) =>
                     <Link key={`${res.info.id}-${index}`} to={"/restaurant/" + res.info.id}>
-                        <RestaurantCard resData={res} />
+                        {console.log(res)}
+                        {res.info.avgRating > 4.5 ? <PromotedRestaurantCard resData={res}/> : <RestaurantCard resData={res} />}
+                        
                     </Link>)}
             </div>
 
