@@ -17,9 +17,9 @@ export const Header = () => {
   }
 
   return (
-    <div className="header-container">
+    <div className="header-container bg-white">
       {/* The final fix is to add .default to the logo variable */}
-      <img className="app-logo bg-white p-2 rounded-md mix-blend-normal" src={LOGO_URL} />
+      <img className="app-logo p-1" src={LOGO_URL} />
       <div className="nav-items">
         <ul>
           <li><Link to="/">Home</Link></li>
