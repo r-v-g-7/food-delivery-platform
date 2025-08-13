@@ -105,10 +105,8 @@ export const Body = () => {
 
 
             <div className="restaurant-cards-container">
-                {console.log(listOfRestaurant)}
                 {listOfRestaurant.map((res, index) =>
                     <Link key={`${res.info.id}-${index}`} to={"/restaurant/" + res.info.id}>
-                        {console.log(res)}
                         {res.info.avgRating > 4.5 ? <PromotedRestaurantCard resData={res}/> : <RestaurantCard resData={res} />}
                         
                     </Link>)}

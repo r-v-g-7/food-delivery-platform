@@ -5,3 +5,5 @@ export const CLOUDINARY_URL = "https://media-assets.swiggy.com/swiggy/image/uplo
 export const SWIGGY_API = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.476198620417865&lng=77.47633523165861&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 
 export const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.900019863776738&lng=78.04083265364169&restaurantId="
+
+export const PROFILE_PICTURE = "https://avatars.githubusercontent.com/u/171326213?v=4"
