@@ -1,11 +1,8 @@
 import { LOGO_URL } from "./mockData";
-import { Children, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { ProfileDataContext } from "../App";
-export const ProfileData = useContext(ProfileDataContext)
 
-export const Header = ({ children }) => {
+export const Header = () => {
   const [loginStatus, setLoginStatus] = useState("Login")
   const [buttonClass, setButtonClass] = useState(`w-24 px-4 py-2 rounded-md text-white font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg bg-blue-600`)
 

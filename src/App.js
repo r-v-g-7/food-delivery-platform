@@ -10,11 +10,11 @@ import useUserOnlineStatus from "./utils/useUserOnlineStatus.js";
 import InternetErrorHandler from "./components/InternetErrorHandler.js";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { createContext } from "react";
-import Profile from "./components/Profile.js";
 
 const About = lazy(() => import("./components/About.js"))
 const Contact = lazy(() => import("./components/Contact.js"))
 const RestaurantMenu = lazy(() => import("./components/RestaurantMenu.js"))
+const Profile = lazy(() => import("./components/Profile.js"))
 
 export const ProfileDataContext = createContext()
 
@@ -30,7 +30,6 @@ const App = () => {
   const fetchProfileData = async () => {
     const data = await fetch("https://api.github.com/users/r-v-g-7")
     const json = await data.json() 
-    console.log(json);
     setProfileData(json)
   } 
 
