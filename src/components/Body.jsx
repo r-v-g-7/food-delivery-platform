@@ -5,11 +5,10 @@ import { Link } from "react-router-dom"
 import Loading from "./Loading"
 import { WithPromotedLabel } from "./RestaurantCard"
 
-
 export const Body = () => {
 
     const [allRestaurants, setAllRestaurants] = useState([])
-    const [listOfRestaurant, setListOfRestaurant] = useState([]) // filterRestaurant is the magic varible created by the useState() function along with setFilterRestaurant thing which will be eventually used to trigger the useState()
+    const [listOfRestaurant, setListOfRestaurant] = useState([])
     const [searchfilter, setSearchFilter] = useState("")
 
     const PromotedRestaurantCard = WithPromotedLabel(RestaurantCard)
@@ -53,20 +52,14 @@ export const Body = () => {
             setListOfRestaurant(uniqueRestaurants)
             setAllRestaurants(uniqueRestaurants)
 
-
         } catch (err) {
             console.log("Error:" + err)
-
         }
-
     }
-
-
 
     return listOfRestaurant.length === 0 ? <Loading /> : (
         <div className="body-container">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-3 bg-white shadow-md rounded-lg mb-6">
-                {/* Search Container */}
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                     <input
                         className="px-4 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400 w-full sm:w-64"
@@ -86,8 +79,6 @@ export const Body = () => {
                         Search
                     </button>
                 </div>
-
-                {/* Top Rated Button */}
                 <div className="w-full sm:w-auto">
                     <button
                         className="bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded-md transition w-full sm:w-auto hover:-translate-y-1 transform transition"
@@ -103,17 +94,27 @@ export const Body = () => {
                 </div>
             </div>
 
+            <div className="text-center my-6 px-4">
+  <h2 className="inline-block text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+    Restaurants in Your Area
+  </h2>
+  <div className="mt-2 w-24 h-1 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 rounded-md mx-auto"></div>
+</div>
+
+<style jsx>{`
+  h2 {
+    font-family: 'Poppins', sans-serif;
+  }
+`}</style>
+
+
 
             <div className="restaurant-cards-container">
                 {listOfRestaurant.map((res, index) =>
                     <Link key={`${res.info.id}-${index}`} to={"/restaurant/" + res.info.id}>
-                        {res.info.avgRating > 4.5 ? <PromotedRestaurantCard resData={res}/> : <RestaurantCard resData={res} />}
-                        
+                        {res.info.avgRating > 4.5 ? <PromotedRestaurantCard resData={res} /> : <RestaurantCard resData={res} />}
                     </Link>)}
             </div>
-
         </div>
     )
 }
-
-
