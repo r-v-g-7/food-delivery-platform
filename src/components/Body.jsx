@@ -4,6 +4,8 @@ import { SWIGGY_API } from "./mockData"
 import { Link } from "react-router-dom"
 import Loading from "./Loading"
 import { WithPromotedLabel } from "./RestaurantCard"
+import { Shimmer } from "./Shimmer"
+import ScrollToTop from "./ScrollToTop"
 
 export const Body = () => {
 
@@ -23,6 +25,7 @@ export const Body = () => {
     useEffect(() => {
         fetchData()
     }, [])
+
 
     const fetchData = async () => {
         try {
@@ -57,7 +60,7 @@ export const Body = () => {
         }
     }
 
-    return listOfRestaurant.length === 0 ? <Loading /> : (
+    return listOfRestaurant.length === 0 ? <Shimmer /> : (
         <div className="body-container">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-3 bg-white shadow-md rounded-lg mb-6">
                 <div className="flex items-center gap-3 w-full sm:w-auto">

@@ -1,6 +1,7 @@
-import React from 'react';
+import ScrollToTop from "./ScrollToTop";
 
 const AboutUs = () => {
+  ScrollToTop()
   const styles = `
     .gta-body {
       font-family: 'Roboto', sans-serif;

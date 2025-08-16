@@ -44,8 +44,7 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const { restaurantInfo, dishData } = useRestaurantMenu(resId);
   const [openSection, setOpenSection] = useState(null);
-  
-  ScrollToTop();
+
 
   // Group menu items by category for accordion
   const menuCategories = dishData?.cards
@@ -70,6 +69,8 @@ const RestaurantMenu = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+
+      <ScrollToTop />
       {/* Wider container with compressed vertical spacing */}
       <div className="max-w-5xl mx-auto p-3">
         
