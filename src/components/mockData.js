@@ -1,4 +1,4 @@
-export const LOGO_URL = "https://i.pinimg.com/1200x/56/be/39/56be3991407d858088878a8afef56c3a.jpg"
+export const LOGO_URL = "https://cdn.truelancer.com/upload-full/449855-Untitled-.png"
 
 export const CLOUDINARY_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
 

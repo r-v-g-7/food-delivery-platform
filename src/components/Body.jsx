@@ -94,14 +94,14 @@ export const Body = () => {
                 </div>
             </div>
 
-            <div className="text-center my-6 px-4">
-  <h2 className="inline-block text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
-    Restaurants in Your Area
-  </h2>
-  <div className="mt-2 w-24 h-1 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 rounded-md mx-auto"></div>
-</div>
+            <div className="text-center my-0 px-4">
+                <h2 className="inline-block text-xl sm:text-xl md:text-3xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+                    Restaurants in Your Area
+                </h2>
+                <div className="mt-2 w-24 h-1 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 rounded-md mx-auto"></div>
+            </div>
 
-<style jsx>{`
+            <style>{`
   h2 {
     font-family: 'Poppins', sans-serif;
   }

@@ -24,7 +24,7 @@ body {
 }
 
 .app-logo {
-    width: 90px;
+    width: 80px;
 }
 
 .header-container>.nav-items>ul {
@@ -80,10 +80,11 @@ body {
     justify-content: center;
     gap: 2.5rem;
     padding: 2rem;
+    margin: 0px 100px;
 }
 
 .card-container {
-    width: 225px;
+    width: 205px;
     border-radius: 12px;
     transition: transform 0.3s ease;
     cursor: pointer;
