@@ -62,7 +62,7 @@ export const Body = () => {
 
     return listOfRestaurant.length === 0 ? <Shimmer /> : (
         <div className="body-container">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-3 bg-white shadow-md rounded-lg mb-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-3 bg-[grey] shadow-md mb-6 my-1">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                     <input
                         className="px-4 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400 w-full sm:w-64"
