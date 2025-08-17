@@ -1,9 +1,10 @@
-import { Shimmer } from "./Shimmer";
 import { useParams } from "react-router";
 import { useState } from "react";
 import ScrollToTop from "./ScrollToTop";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Loading from "./Loading";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 // Accordion Component with improved animations
 const MenuAccordion = ({ title, children, isOpen, onToggle, itemCount }) => {
@@ -21,19 +22,17 @@ const MenuAccordion = ({ title, children, isOpen, onToggle, itemCount }) => {
             {itemCount} items
           </span>
         </div>
-        
-        <div className={`transform transition-all duration-300 ${
-          isOpen ? 'rotate-180 text-orange-600' : 'rotate-0 text-gray-400'
-        } group-hover:text-orange-600`}>
+
+        <div className={`transform transition-all duration-300 ${isOpen ? 'rotate-180 text-orange-600' : 'rotate-0 text-gray-400'
+          } group-hover:text-orange-600`}>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
       </button>
-      
-      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
-        isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-      }`}>
+
+      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+        }`}>
         <div className="px-5 pb-5 border-t border-gray-100 bg-gradient-to-br from-gray-50/50 to-orange-50/30">
           {children}
         </div>
@@ -46,6 +45,11 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const { restaurantInfo, dishData } = useRestaurantMenu(resId);
   const [openSection, setOpenSection] = useState(0); // Open first section by default
+
+  const dispatch = useDispatch()
+  const handleCartItems = () => {
+    dispatch(addItem("burger"))
+  }
 
   // Group menu items by category for accordion
   const menuCategories = dishData?.cards
@@ -71,24 +75,24 @@ const RestaurantMenu = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-orange-50/30 to-yellow-50/20">
       <ScrollToTop />
-      
+
       {/* Enhanced container with better spacing */}
       <div className="max-w-6xl mx-auto px-4 py-6">
-        
+
         {/* Restaurant Header - Enhanced Design */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6 backdrop-blur-sm bg-white/95">
           {/* Restaurant Image and Basic Info */}
           <div className="flex flex-col lg:flex-row gap-6 mb-6">
             {cloudinaryImageId && (
               <div className="flex-shrink-0">
-                <img 
-                  className="w-full lg:w-48 h-48 object-cover rounded-2xl shadow-md border border-gray-200" 
-                  src={IMG_CDN_URL + cloudinaryImageId} 
+                <img
+                  className="w-full lg:w-48 h-48 object-cover rounded-2xl shadow-md border border-gray-200"
+                  src={IMG_CDN_URL + cloudinaryImageId}
                   alt={name}
                 />
               </div>
             )}
-            
+
             <div className="flex-1">
               <div className="mb-4">
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-orange-800 bg-clip-text text-transparent mb-2">
@@ -104,7 +108,7 @@ const RestaurantMenu = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Stats Row with Enhanced Design */}
           <div className="border-t border-gray-100 pt-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -120,7 +124,7 @@ const RestaurantMenu = () => {
                   <p className="text-green-600 text-sm">({totalRatingsString})</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border border-blue-200">
                 <div className="bg-blue-600 text-white p-3 rounded-lg shadow-md">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -132,7 +136,7 @@ const RestaurantMenu = () => {
                   <p className="text-blue-600 font-medium">{sla?.slaString}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl border border-orange-200">
                 <div className="bg-orange-600 text-white p-3 rounded-lg shadow-md">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -180,7 +184,7 @@ const RestaurantMenu = () => {
             </h2>
             <div className="flex-1 h-0.5 bg-gradient-to-r from-orange-300 to-transparent"></div>
           </div>
-          
+
           {menuCategories.map((category, categoryIndex) => (
             <MenuAccordion
               key={categoryIndex}
@@ -195,48 +199,46 @@ const RestaurantMenu = () => {
                     <div className="flex justify-between items-start gap-4">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-3 mb-2">
-                          <div className={`w-4 h-4 border-2 flex items-center justify-center rounded-sm ${
-                            item.isVeg ? 'border-green-600' : 'border-red-600'
-                          }`}>
-                            <div className={`w-2 h-2 rounded-full ${
-                              item.isVeg ? 'bg-green-600' : 'bg-red-600'
-                            }`}></div>
+                          <div className={`w-4 h-4 border-2 flex items-center justify-center rounded-sm ${item.isVeg ? 'border-green-600' : 'border-red-600'
+                            }`}>
+                            <div className={`w-2 h-2 rounded-full ${item.isVeg ? 'bg-green-600' : 'bg-red-600'
+                              }`}></div>
                           </div>
                           <h4 className="font-bold text-gray-900 group-hover:text-orange-700 transition-colors duration-200 line-clamp-1">
                             {item.name}
                           </h4>
                         </div>
-                        
+
                         <div className="mb-3">
                           <span className="font-bold text-gray-900 text-lg">
                             ₹{(item.price || item.defaultPrice) / 100}
                           </span>
                         </div>
-                        
+
                         {item.description && (
                           <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                             {item.description}
                           </p>
                         )}
                       </div>
-                      
+
                       <div className="flex flex-col items-center space-y-2 flex-shrink-0">
                         {item.imageId && (
                           <div className="relative group/image">
-                            <img 
-                              className="w-20 h-20 object-cover rounded-xl shadow-md border-2 border-gray-200 group-hover/image:border-orange-300 transition-all duration-300" 
-                              src={IMG_CDN_URL + item.imageId} 
+                            <img
+                              className="w-20 h-20 object-cover rounded-xl shadow-md border-2 border-gray-200 group-hover/image:border-orange-300 transition-all duration-300"
+                              src={IMG_CDN_URL + item.imageId}
                               alt={item.name}
                             />
                             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                              <button className="bg-white border-2 border-orange-500 text-orange-600 px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-orange-200 hover:scale-110">
+                              <button onClick={handleCartItems} className="bg-white border-2 border-orange-500 text-orange-600 px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-orange-200 hover:scale-110">
                                 ADD +
                               </button>
                             </div>
                           </div>
                         )}
                         {!item.imageId && (
-                          <button className="bg-white border-2 border-orange-500 text-orange-600 px-6 py-2 rounded-lg text-sm font-bold hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-orange-200 hover:scale-110">
+                          <button onClick={handleCartItems({})} className="bg-white border-2 border-orange-500 text-orange-600 px-6 py-2 rounded-lg text-sm font-bold hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-orange-200 hover:scale-110">
                             ADD +
                           </button>
                         )}
