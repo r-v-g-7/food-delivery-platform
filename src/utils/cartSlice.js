@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Action } from "@remix-run/router";
 
 const cartSlice = createSlice({
     name: "cart", 
     initialState: {
-        items: [] 
+        items: ["mango", "apple", "pizza"] 
     }, 
     reducers: {
         addItem: (state, action) => {

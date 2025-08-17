@@ -10,6 +10,8 @@ import useUserOnlineStatus from "./utils/useUserOnlineStatus.js";
 import InternetErrorHandler from "./components/InternetErrorHandler.js";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { createContext } from "react";
+import { Provider } from "react-redux";
+import { appStore } from "./utils/appStore.js";
 
 const About = lazy(() => import("./components/About.js"))
 const Contact = lazy(() => import("./components/Contact.js"))
@@ -21,29 +23,32 @@ export const ProfileDataContext = createContext()
 
 const App = () => {
   const status = useUserOnlineStatus()
-  const[profileData, setProfileData] = useState(null)
-  
+  const [profileData, setProfileData] = useState(null)
+
   useEffect(() => {
     fetchProfileData()
   }, [])
-  
+
   const fetchProfileData = async () => {
     const data = await fetch("https://api.github.com/users/r-v-g-7")
-    const json = await data.json() 
+    const json = await data.json()
     setProfileData(json)
-  } 
+  }
 
   if (status === "offline") {
     return <InternetErrorHandler />
   }
   return (
-    <ProfileDataContext.Provider value={{ profileData, setProfileData }}>
-      <div className="app-container">
-        <Header />
-        <Outlet />
-        <CJFooter />
-      </div>
-    </ProfileDataContext.Provider>
+    <Provider store={appStore}>
+      <ProfileDataContext.Provider value={{ profileData, setProfileData }}>
+        <div className="app-container">
+          <Header />
+          <Outlet />
+          <CJFooter />
+        </div>
+      </ProfileDataContext.Provider>
+    </Provider>
+
   );
 };
 
@@ -68,7 +73,7 @@ const appRouter = createBrowserRouter([
       element: <Suspense fallback={<h1>Loading.....</h1>}><RestaurantMenu /></Suspense>
     },
     {
-      path: "/profile", 
+      path: "/profile",
       element: <Suspense fallback={<h1>Loading........</h1>}><Profile /></Suspense>
     }
     ],
