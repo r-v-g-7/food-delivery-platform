@@ -7,7 +7,7 @@ export const Header = () => {
   const [loginStatus, setLoginStatus] = useState("Login")
   const [buttonClass, setButtonClass] = useState(`w-24 px-4 py-2 rounded-md text-white font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg bg-blue-600`)
 
-  const cartItems = useSelector((store) => store.cart.items.length) 
+  const cartItems = useSelector((store) => store.cart.items) 
   console.log(cartItems);
 
   const handleLoginClick = () => {
@@ -29,7 +29,7 @@ export const Header = () => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About Us</Link></li>
           <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/cart">Cart ({cartItems} items)</Link></li>
+          <li><Link to="/cart">Cart ({cartItems.length} items)</Link></li>
           <li className="flex items-center"><Link to="/profile">Profile</Link></li>
 
           <button className={`w-24 px-4 py-2 rounded-md text-white font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg ${buttonClass}`} onClick={() => {

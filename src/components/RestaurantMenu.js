@@ -5,6 +5,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Loading from "./Loading";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
+import { log } from "console";
 
 // Accordion Component with improved animations
 const MenuAccordion = ({ title, children, isOpen, onToggle, itemCount }) => {
@@ -47,9 +48,10 @@ const RestaurantMenu = () => {
   const [openSection, setOpenSection] = useState(0); // Open first section by default
 
   const dispatch = useDispatch()
-  const handleCartItems = () => {
-    dispatch(addItem("burger"))
+  const handleCartItems = (item) => {
+    dispatch(addItem(item.name))
   }
+  
 
   // Group menu items by category for accordion
   const menuCategories = dishData?.cards
@@ -231,7 +233,7 @@ const RestaurantMenu = () => {
                               alt={item.name}
                             />
                             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                              <button onClick={handleCartItems} className="bg-white border-2 border-orange-500 text-orange-600 px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-orange-200 hover:scale-110">
+                              <button onClick={() => handleCartItems(item)}  className="bg-white border-2 border-orange-500 text-orange-600 px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-lg hover:shadow-orange-200 hover:scale-110">
                                 ADD +
                               </button>
                             </div>
