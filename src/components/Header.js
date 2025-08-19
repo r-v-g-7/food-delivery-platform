@@ -2,12 +2,13 @@ import { LOGO_URL } from "./mockData";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Cart from "./Cart";
 
 export const Header = () => {
   const [loginStatus, setLoginStatus] = useState("Login")
   const [buttonClass, setButtonClass] = useState(`w-24 px-4 py-2 rounded-md text-white font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg bg-blue-600`)
 
-  const cartItems = useSelector((store) => store.cart.items) 
+  const cartItems = useSelector((store) => store.cart.items)
   console.log(cartItems);
 
   const handleLoginClick = () => {
@@ -29,7 +30,16 @@ export const Header = () => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About Us</Link></li>
           <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/cart">Cart ({cartItems.length} items)</Link></li>
+          <li className="flex items-center">
+            <Link to="/cart" className="relative flex items-center">
+              🛒 Cart
+              {cartItems.length > 0 && (
+                <span className="ml-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
+            </Link>
+          </li>
           <li className="flex items-center"><Link to="/profile">Profile</Link></li>
 
           <button className={`w-24 px-4 py-2 rounded-md text-white font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg ${buttonClass}`} onClick={() => {

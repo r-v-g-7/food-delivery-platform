@@ -16,7 +16,16 @@ const useRestaurantMenu = (resId) => {
         setDishData(json.data)
     }
 
-    return { restaurantInfo, dishData }
+    const menuCategories = dishData?.cards
+    ?.find(res => res?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+    ?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    ?.filter(card => card?.card?.card?.itemCards)
+    ?.map(card => ({
+      title: card?.card?.card?.title || 'Menu Items',
+      items: card?.card?.card?.itemCards?.map(itemCard => itemCard?.card?.info) || []
+    })) || [];
+
+    return { restaurantInfo, dishData, menuCategories }
 }
 
 export default useRestaurantMenu

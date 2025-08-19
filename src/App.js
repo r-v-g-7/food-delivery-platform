@@ -17,9 +17,9 @@ const About = lazy(() => import("./components/About.js"))
 const Contact = lazy(() => import("./components/Contact.js"))
 const RestaurantMenu = lazy(() => import("./components/RestaurantMenu.js"))
 const Profile = lazy(() => import("./components/Profile.js"))
+const Cart = lazy(() => import("./components/Cart.js"))
 
 export const ProfileDataContext = createContext()
-
 
 const App = () => {
   const status = useUserOnlineStatus()
@@ -75,6 +75,10 @@ const appRouter = createBrowserRouter([
     {
       path: "/profile",
       element: <Suspense fallback={<h1>Loading........</h1>}><Profile /></Suspense>
+    }, 
+    {
+      path: "/cart",
+      element: <Suspense fallback={<h1>Loading........</h1>}><Cart /></Suspense>
     }
     ],
     errorElement: <Error />
