@@ -12,6 +12,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { createContext } from "react";
 import { Provider } from "react-redux";
 import { appStore } from "./utils/appStore.js";
+import ScrollToTop from "./components/ScrollToTop.js";
 
 const About = lazy(() => import("./components/About.js"))
 const Contact = lazy(() => import("./components/Contact.js"))
@@ -42,6 +43,7 @@ const App = () => {
     <Provider store={appStore}>
       <ProfileDataContext.Provider value={{ profileData, setProfileData }}>
         <div className="app-container">
+          <ScrollToTop />
           <Header />
           <Outlet />
           <CJFooter />
