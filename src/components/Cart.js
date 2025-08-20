@@ -2,8 +2,6 @@ import react from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { addItem } from "../utils/cartSlice"
-import useRestaurantMenu from "../utils/useRestaurantMenu"
-import { useParams } from "react-router"
 
 const Cart = () => {
 
