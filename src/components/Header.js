@@ -8,8 +8,7 @@ export const Header = () => {
   const [buttonClass, setButtonClass] = useState(`w-24 px-4 py-2 rounded-md text-white font-semibold shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg bg-blue-600`)
 
   const cartItems = useSelector((store) => store.cart.items)
-  console.log(cartItems);
-
+  
   const handleLoginClick = () => {
     if (loginStatus === "Login") {
       setLoginStatus("Logout")
