@@ -15,7 +15,7 @@ const Cart = () => {
     const handleClearCart = (item) => {
         dispatch(clearCart(item))
     }
- 
+
     const cartItems = useSelector((store) => store.cart.items)
     console.log(cartItems)
 
@@ -56,16 +56,18 @@ const Cart = () => {
                                 <div key={item.id + index} className="p-6 border-b border-gray-100 last:border-b-0">
                                     <div className="flex items-start gap-4">
                                         {/* Item Image Placeholder */}
-                                        <div className="w-20 h-20 bg-gray-200 rounded-lg flex-shrink-0 flex items-center justify-center">
-                                            <span className="text-gray-500 text-sm">IMG</span>
+                                        <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                                            <img
+                                                src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/${item.imageId}`}
+                                                alt={item.name}
+                                                className="w-full h-full object-cover"
+                                            />
                                         </div>
-
                                         {/* Item Details */}
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-start justify-between mb-2">
                                                 <div className="flex-1">
                                                     <h3 className="font-semibold text-gray-800 text-lg mb-1">{item.name}</h3>
-
                                                     {/* Veg/Non-veg indicator */}
                                                     <div className="flex items-center gap-2 mb-2">
                                                         <div className={`w-4 h-4 border-2 flex items-center justify-center ${item.itemAttribute?.vegClassifier === "VEG"
@@ -100,13 +102,13 @@ const Cart = () => {
                                                         {/* Quantity Controls */}
                                                         <div className="flex items-center gap-3">
                                                             <div className="flex items-center border border-gray-300 rounded-lg">
-                                                                <button className="p-2 hover:bg-gray-50 transition-colors">
-                                                                    <Minus onClick={() => handleRemovedItems(item) && (item.quantity - 1)} className="w-4 h-4 text-gray-600" />
+                                                                <button onClick={() => handleRemovedItems(item) && (item.quantity--)} className="p-2 hover:bg-gray-50 transition-colors">
+                                                                    <Minus className="w-4 h-4 text-gray-600" />
                                                                 </button>
                                                                 <span className="px-3 py-1 text-gray-800 font-medium">
                                                                     {item.quantity || 1}
                                                                 </span>
-                                                                <button onClick={() => handleRepeatedItems(item) && (item.quantity + 1)} className="p-2 hover:bg-gray-50 transition-colors">
+                                                                <button onClick={() => handleRepeatedItems(item) && (item.quantity++)} className="p-2 hover:bg-gray-50 transition-colors">
                                                                     <Plus className="w-4 h-4 text-gray-600" />
                                                                 </button>
                                                             </div>
