@@ -4,6 +4,7 @@ import { SWIGGY_API } from "./mockData"
 import { Link } from "react-router-dom"
 import { WithPromotedLabel } from "./RestaurantCard"
 import { Shimmer } from "./Shimmer"
+import { list } from "postcss"
 
 export const Body = () => {
 

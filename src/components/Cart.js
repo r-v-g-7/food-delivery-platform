@@ -1,16 +1,26 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react"
-import ScrollToTop from "./ScrollToTop"
+import { addItem, removeItem, clearCart } from "../utils/cartSlice"
 
 const Cart = () => {
 
     const dispatch = useDispatch()
+    const handleRepeatedItems = (item) => {
+        dispatch(addItem(item))
+    }
+    const handleRemovedItems = (item) => {
+        dispatch(removeItem(item))
+    }
+    const handleClearCart = (item) => {
+        dispatch(clearCart(item))
+    }
+ 
     const cartItems = useSelector((store) => store.cart.items)
     console.log(cartItems)
 
     // Calculate total
-    const totalAmount = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0)
+    const totalAmount = cartItems.reduce((sum, item) => sum + ((item.price || item.defaultPrice) * (item.quantity || 1)), 0)
     const deliveryFee = 49
     const gstAmount = Math.round(totalAmount * 0.18)
     const finalTotal = totalAmount + deliveryFee + gstAmount
@@ -18,7 +28,6 @@ const Cart = () => {
     if (cartItems.length === 0) {
         return (
             <div className="min-h-screen bg-gray-50 py-8">
-                <ScrollToTop />
                 <div className="max-w-4xl mx-auto px-4">
                     <div className="bg-white rounded-lg shadow-sm p-8 text-center">
                         <ShoppingBag className="w-16 h-16 text-gray-300 mx-auto mb-4" />
@@ -60,17 +69,17 @@ const Cart = () => {
                                                     {/* Veg/Non-veg indicator */}
                                                     <div className="flex items-center gap-2 mb-2">
                                                         <div className={`w-4 h-4 border-2 flex items-center justify-center ${item.itemAttribute?.vegClassifier === "VEG"
-                                                                ? "border-green-600"
-                                                                : "border-red-600"
+                                                            ? "border-green-600"
+                                                            : "border-red-600"
                                                             }`}>
                                                             <div className={`w-2 h-2 rounded-full ${item.itemAttribute?.vegClassifier === "VEG"
-                                                                    ? "bg-green-600"
-                                                                    : "bg-red-600"
+                                                                ? "bg-green-600"
+                                                                : "bg-red-600"
                                                                 }`}></div>
                                                         </div>
                                                         <span className={`text-xs font-medium ${item.itemAttribute?.vegClassifier === "VEG"
-                                                                ? "text-green-600"
-                                                                : "text-red-600"
+                                                            ? "text-green-600"
+                                                            : "text-red-600"
                                                             }`}>
                                                             {item.itemAttribute?.vegClassifier}
                                                         </span>
@@ -85,24 +94,24 @@ const Cart = () => {
 
                                                     <div className="flex items-center justify-between">
                                                         <span className="text-xl font-bold text-gray-800">
-                                                            ₹{(item.price / 100).toFixed(2)}
+                                                            ₹{((item.price || item.defaultPrice) / 100).toFixed(2)}
                                                         </span>
 
                                                         {/* Quantity Controls */}
                                                         <div className="flex items-center gap-3">
                                                             <div className="flex items-center border border-gray-300 rounded-lg">
                                                                 <button className="p-2 hover:bg-gray-50 transition-colors">
-                                                                    <Minus className="w-4 h-4 text-gray-600" />
+                                                                    <Minus onClick={() => handleRemovedItems(item) && (item.quantity - 1)} className="w-4 h-4 text-gray-600" />
                                                                 </button>
                                                                 <span className="px-3 py-1 text-gray-800 font-medium">
                                                                     {item.quantity || 1}
                                                                 </span>
-                                                                <button className="p-2 hover:bg-gray-50 transition-colors">
+                                                                <button onClick={() => handleRepeatedItems(item) && (item.quantity + 1)} className="p-2 hover:bg-gray-50 transition-colors">
                                                                     <Plus className="w-4 h-4 text-gray-600" />
                                                                 </button>
                                                             </div>
 
-                                                            <button className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                                            <button onClick={() => handleClearCart(item)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
                                                                 <Trash2 className="w-4 h-4" />
                                                             </button>
                                                         </div>
@@ -128,7 +137,7 @@ const Cart = () => {
                                 </div>
                                 <div className="flex justify-between text-gray-600">
                                     <span>Delivery Fee</span>
-                                    <span>₹{(deliveryFee / 100).toFixed(2)}</span>
+                                    <span>₹{(deliveryFee).toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-600">
                                     <span>GST (18%)</span>
