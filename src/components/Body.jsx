@@ -96,12 +96,13 @@ export const Body = () => {
                 </div>
             </div>
 
-            <div className="text-center my-0 px-4">
-                <h2 className="inline-block text-xl sm:text-xl md:text-3xl font-semibold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+            <div className="text-center px-4 pt-4">
+                <h2 className="text-2xl md:text-3xl font-medium text-gray-800 mb-3">
                     Restaurants in Your Area
                 </h2>
-                <div className="mt-2 w-24 h-1 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 rounded-md mx-auto"></div>
+                <div className="w-16 h-0.5 bg-gray-300 mx-auto"></div>
             </div>
+
 
             <style>{`
   h2 {
