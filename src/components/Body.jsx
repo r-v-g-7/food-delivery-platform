@@ -98,7 +98,7 @@ export const Body = () => {
 
             <div className="text-center px-4 pt-4">
                 <h2 className="text-2xl md:text-3xl font-medium text-gray-800 mb-3">
-                    Restaurants in Your Area
+                    Top Picks Around You
                 </h2>
                 <div className="w-16 h-0.5 bg-gray-300 mx-auto"></div>
             </div>
@@ -109,8 +109,6 @@ export const Body = () => {
     font-family: 'Poppins', sans-serif;
   }
 `}</style>
-
-
 
             <div className="restaurant-cards-container">
                 {listOfRestaurant.map((res, index) =>
