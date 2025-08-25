@@ -2,7 +2,7 @@ import "./index.css";
 import "./main.css";
 import ReactDOM from "react-dom/client";
 import { Header } from "./components/Header";
-import { Body } from "./components/Body.jsx";
+import { Body } from "./components/Body.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Error } from "./components/Error.js";
 import CJFooter from "./components/CJFooter.js";
@@ -77,7 +77,7 @@ const appRouter = createBrowserRouter([
     {
       path: "/profile",
       element: <Suspense fallback={<h1>Loading........</h1>}><Profile /></Suspense>
-    }, 
+    },
     {
       path: "/cart",
       element: <Suspense fallback={<h1>Loading........</h1>}><Cart /></Suspense>

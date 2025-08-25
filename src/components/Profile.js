@@ -3,7 +3,7 @@ import { ProfileDataContext } from "../App";
 
 const Profile = () => {
   const { profileData } = useContext(ProfileDataContext);
-  
+
   if (!profileData) {
     return (
       <div style={styles.loadingContainer}>
@@ -13,18 +13,18 @@ const Profile = () => {
     );
   }
 
-  const { 
-    name, 
-    login, 
-    avatar_url, 
-    bio, 
-    html_url, 
-    created_at, 
-    public_repos, 
-    followers, 
+  const {
+    name,
+    login,
+    avatar_url,
+    bio,
+    html_url,
+    created_at,
+    public_repos,
+    followers,
     following,
     location,
-    company 
+    company
   } = profileData;
 
   const formatDate = (dateString) => {
@@ -51,34 +51,34 @@ const Profile = () => {
               <span style={styles.joinDate}>Since {formatDate(created_at)}</span>
             </div>
           </div>
+
+          {/* Quick Stats moved to header for horizontal space */}
+          <div style={styles.quickStats}>
+            <div style={styles.quickStatItem}>
+              <span style={styles.statIcon}>🍕</span>
+              <div>
+                <span style={styles.quickStatNumber}>{public_repos}</span>
+                <span style={styles.quickStatLabel}>Orders</span>
+              </div>
+            </div>
+            <div style={styles.quickStatItem}>
+              <span style={styles.statIcon}>❤️</span>
+              <div>
+                <span style={styles.quickStatNumber}>{followers}</span>
+                <span style={styles.quickStatLabel}>Favorites</span>
+              </div>
+            </div>
+            <div style={styles.quickStatItem}>
+              <span style={styles.statIcon}>⭐</span>
+              <div>
+                <span style={styles.quickStatNumber}>4.8</span>
+                <span style={styles.quickStatLabel}>Rating</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Quick Stats Row */}
-        <div style={styles.quickStats}>
-          <div style={styles.quickStatItem}>
-            <span style={styles.statIcon}>🍕</span>
-            <div>
-              <span style={styles.quickStatNumber}>{public_repos}</span>
-              <span style={styles.quickStatLabel}>Orders</span>
-            </div>
-          </div>
-          <div style={styles.quickStatItem}>
-            <span style={styles.statIcon}>❤️</span>
-            <div>
-              <span style={styles.quickStatNumber}>{followers}</span>
-              <span style={styles.quickStatLabel}>Favorites</span>
-            </div>
-          </div>
-          <div style={styles.quickStatItem}>
-            <span style={styles.statIcon}>⭐</span>
-            <div>
-              <span style={styles.quickStatNumber}>4.8</span>
-              <span style={styles.quickStatLabel}>Rating</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content Grid */}
+        {/* Main Content Grid - Now 3 columns */}
         <div style={styles.contentGrid}>
           {/* Left Column */}
           <div style={styles.leftColumn}>
@@ -88,7 +88,7 @@ const Profile = () => {
                 <p style={styles.bio}>{bio}</p>
               </div>
             )}
-            
+
             <div style={styles.preferencesSection}>
               <h3 style={styles.sectionTitle}>Food Preferences</h3>
               <div style={styles.preferencesTags}>
@@ -99,8 +99,8 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Right Column */}
-          <div style={styles.rightColumn}>
+          {/* Middle Column */}
+          <div style={styles.middleColumn}>
             <div style={styles.deliveryInfo}>
               <h3 style={styles.sectionTitle}>Delivery Info</h3>
               {location && (
@@ -118,7 +118,10 @@ const Profile = () => {
                 <span style={styles.infoText}>Usually orders in evening</span>
               </div>
             </div>
+          </div>
 
+          {/* Right Column */}
+          <div style={styles.rightColumn}>
             <div style={styles.recentActivity}>
               <h3 style={styles.sectionTitle}>Recent Activity</h3>
               <div style={styles.activityItem}>
@@ -131,21 +134,27 @@ const Profile = () => {
                 <span>Rated "Pizza Corner" 5 stars</span>
                 <span style={styles.activityTime}>1d ago</span>
               </div>
+              <div style={styles.activityItem}>
+                <span>🎯</span>
+                <span>Achieved "Foodie" badge</span>
+                <span style={styles.activityTime}>3d ago</span>
+              </div>
+            </div>
+
+            {/* Action Button moved to right column */}
+            <div style={styles.actionSection}>
+              <a
+                href={html_url}
+                target="_blank"
+                rel="noreferrer"
+                style={styles.profileButton}
+                className="profile-button"
+              >
+                <span style={styles.buttonIcon}>🍽️</span>
+                View Full Profile
+              </a>
             </div>
           </div>
-        </div>
-
-        {/* Action Button */}
-        <div style={styles.actionSection}>
-          <a 
-            href={html_url} 
-            target="_blank" 
-            rel="noreferrer" 
-            style={styles.profileButton}
-          >
-            <span style={styles.buttonIcon}>🍽️</span>
-            View Full Profile
-          </a>
         </div>
       </div>
     </div>
@@ -157,63 +166,68 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "1rem",
-    background: "#f8f9fa", // Clean light grey background
+    padding: "1rem 2rem",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     minHeight: "100vh",
     maxHeight: "100vh",
     overflow: "hidden",
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   },
-  
+
   loadingContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
-    background: "#f8f9fa", // Clean light grey background
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
   },
-  
+
   loadingSpinner: {
-    width: "40px",
-    height: "40px",
-    border: "4px solid #e9ecef",
-    borderTop: "4px solid #6c757d",
+    width: "48px",
+    height: "48px",
+    border: "4px solid rgba(255, 255, 255, 0.2)",
+    borderTop: "4px solid #ffffff",
     borderRadius: "50%",
     animation: "spin 1s linear infinite",
-    marginBottom: "16px",
+    marginBottom: "20px",
   },
-  
+
   loadingText: {
-    color: "#6c757d",
-    fontSize: "1rem",
+    color: "#ffffff",
+    fontSize: "1.1rem",
     fontWeight: "500",
+    letterSpacing: "0.5px",
   },
 
   card: {
-    background: "#ffffff", // Clean white card
-    borderRadius: "16px",
-    padding: "1.5rem",
+    background: "#ffffff",
+    borderRadius: "24px",
+    padding: "1.5rem 2rem",
     width: "100%",
-    maxWidth: "900px",
-    height: "90vh",
-    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)", // Subtle shadow
+    maxWidth: "95vw",
+    height: "auto",
+    maxHeight: "90vh",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
-    border: "1px solid #e9ecef", // Subtle border
+    backdropFilter: "blur(10px)",
   },
 
   headerSection: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: "1.5rem",
     paddingBottom: "1rem",
-    borderBottom: "2px solid #f1f3f4", // Light grey border
+    borderBottom: "1px solid rgba(0, 0, 0, 0.06)",
+    gap: "2rem",
   },
 
   avatarContainer: {
     position: "relative",
-    marginRight: "1.5rem",
+    flexShrink: 0,
   },
 
   avatar: {
@@ -221,94 +235,110 @@ const styles = {
     height: "80px",
     borderRadius: "50%",
     objectFit: "cover",
-    border: "4px solid #e9ecef", // Light grey border
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+    border: "4px solid #ffffff",
+    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   },
 
   memberBadge: {
     position: "absolute",
-    top: "-5px",
-    right: "-5px",
-    width: "24px",
-    height: "24px",
-    backgroundColor: "#6c757d", // Neutral grey
+    top: "-6px",
+    right: "-6px",
+    width: "28px",
+    height: "28px",
+    background: "linear-gradient(135deg, #ffd89b 0%, #19547b 100%)",
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "12px",
-    border: "2px solid #fff",
+    border: "3px solid #ffffff",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
   },
 
   userInfo: {
     flex: 1,
+    minWidth: 0,
   },
 
   name: {
     margin: "0 0 4px 0",
-    fontSize: "1.6rem",
+    fontSize: "1.8rem",
     fontWeight: "700",
-    color: "#2c3e50", // Dark grey
+    color: "#1a202c",
+    letterSpacing: "-0.025em",
+    lineHeight: "1.2",
   },
 
   username: {
-    color: "#6c757d", // Medium grey
+    color: "#718096",
     fontSize: "0.9rem",
     margin: "0 0 8px 0",
+    fontWeight: "500",
   },
 
   membershipInfo: {
     display: "flex",
     gap: "1rem",
     alignItems: "center",
+    flexWrap: "wrap",
   },
 
   memberTag: {
-    backgroundColor: "#e9ecef", // Light grey
-    color: "#495057", // Dark grey text
-    padding: "4px 8px",
-    borderRadius: "12px",
+    background: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+    color: "#744210",
+    padding: "6px 12px",
+    borderRadius: "16px",
     fontSize: "0.75rem",
     fontWeight: "600",
+    letterSpacing: "0.025em",
+    boxShadow: "0 2px 8px rgba(252, 182, 159, 0.3)",
   },
 
   joinDate: {
-    color: "#6c757d", // Medium grey
+    color: "#a0aec0",
     fontSize: "0.8rem",
+    fontWeight: "500",
   },
 
   quickStats: {
     display: "flex",
-    justifyContent: "space-around",
-    padding: "1rem",
-    backgroundColor: "#f8f9fa", // Very light grey
-    borderRadius: "12px",
-    marginBottom: "1.5rem",
-    border: "1px solid #e9ecef",
+    gap: "1.5rem",
+    alignItems: "center",
+    flexShrink: 0,
   },
 
   quickStatItem: {
     display: "flex",
     alignItems: "center",
     gap: "8px",
+    padding: "0.5rem 1rem",
+    background: "linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)",
+    borderRadius: "12px",
+    border: "1px solid rgba(0, 0, 0, 0.05)",
   },
 
   statIcon: {
     fontSize: "1.5rem",
+    filter: "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))",
   },
 
   quickStatNumber: {
     display: "block",
     fontSize: "1.2rem",
-    fontWeight: "700",
-    color: "#495057", // Dark grey
+    fontWeight: "800",
+    color: "#2d3748",
+    lineHeight: "1",
   },
 
   quickStatLabel: {
     display: "block",
     fontSize: "0.7rem",
-    color: "#6c757d", // Medium grey
+    color: "#a0aec0",
     textTransform: "uppercase",
+    fontWeight: "600",
+    letterSpacing: "0.1em",
+    marginTop: "2px",
   },
 
   contentGrid: {
@@ -316,6 +346,7 @@ const styles = {
     gap: "1.5rem",
     flex: 1,
     overflow: "hidden",
+    minHeight: 0,
   },
 
   leftColumn: {
@@ -323,6 +354,15 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    minWidth: "280px",
+  },
+
+  middleColumn: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    gap: "1rem",
+    minWidth: "280px",
   },
 
   rightColumn: {
@@ -330,37 +370,41 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    minWidth: "280px",
   },
 
   sectionTitle: {
     fontSize: "1rem",
     fontWeight: "700",
-    color: "#333", // Dark grey
-    margin: "0 0 0.5rem 0",
-    display: "flex",
-    alignItems: "center",
+    color: "#2d3748",
+    margin: "0 0 0.75rem 0",
+    letterSpacing: "-0.025em",
   },
 
   aboutSection: {
-    backgroundColor: "#f8f9fa", // Very light grey
-    padding: "1rem",
-    borderRadius: "8px",
+    background: "linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)",
+    padding: "1.25rem",
+    borderRadius: "16px",
     flex: 1,
-    border: "1px solid #e9ecef",
+    border: "1px solid rgba(0, 0, 0, 0.05)",
+    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    minHeight: 0,
   },
 
   bio: {
-    fontSize: "0.85rem",
-    color: "#555",
-    lineHeight: "1.4",
+    fontSize: "0.9rem",
+    color: "#4a5568",
+    lineHeight: "1.5",
     margin: "0",
+    fontWeight: "400",
   },
 
   preferencesSection: {
-    backgroundColor: "#f8f9fa", // Very light grey
-    padding: "1rem",
-    borderRadius: "8px",
-    border: "1px solid #e9ecef",
+    background: "linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)",
+    padding: "1.25rem",
+    borderRadius: "16px",
+    border: "1px solid rgba(0, 0, 0, 0.05)",
+    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
   },
 
   preferencesTags: {
@@ -370,63 +414,70 @@ const styles = {
   },
 
   tag: {
-    backgroundColor: "#ffffff",
-    color: "#495057", // Dark grey
-    padding: "4px 8px",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    color: "#ffffff",
+    padding: "6px 12px",
     borderRadius: "16px",
-    fontSize: "0.75rem",
+    fontSize: "0.8rem",
     fontWeight: "600",
-    border: "1px solid #e9ecef",
+    letterSpacing: "0.025em",
+    boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+    transition: "all 0.2s ease",
   },
 
   deliveryInfo: {
-    backgroundColor: "#f8f9fa", // Very light grey
-    padding: "1rem",
-    borderRadius: "8px",
-    border: "1px solid #e9ecef",
+    background: "linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)",
+    padding: "1.25rem",
+    borderRadius: "16px",
+    border: "1px solid rgba(0, 0, 0, 0.05)",
+    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    flex: 1,
   },
 
   infoRow: {
     display: "flex",
     alignItems: "center",
-    marginBottom: "0.5rem",
-    fontSize: "0.8rem",
+    marginBottom: "0.75rem",
+    fontSize: "0.85rem",
   },
 
   infoIcon: {
-    marginRight: "8px",
+    marginRight: "10px",
     fontSize: "1rem",
   },
 
   infoText: {
-    color: "#555",
+    color: "#4a5568",
+    fontWeight: "500",
   },
 
   recentActivity: {
-    backgroundColor: "#f8f9fa", // Very light grey
-    padding: "1rem",
-    borderRadius: "8px",
-    border: "1px solid #e9ecef",
+    background: "linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)",
+    padding: "1.25rem",
+    borderRadius: "16px",
+    border: "1px solid rgba(0, 0, 0, 0.05)",
+    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
     flex: 1,
   },
 
   activityItem: {
     display: "flex",
     alignItems: "center",
-    gap: "8px",
-    marginBottom: "0.5rem",
-    fontSize: "0.8rem",
-    color: "#555",
+    gap: "10px",
+    marginBottom: "0.75rem",
+    fontSize: "0.85rem",
+    color: "#4a5568",
+    fontWeight: "500",
   },
 
   activityTime: {
-    color: "#999",
+    color: "#a0aec0",
     marginLeft: "auto",
-    fontSize: "0.7rem",
+    fontSize: "0.75rem",
+    fontWeight: "500",
   },
 
   actionSection: {
-    marginTop: "1rem",
     textAlign: "center",
   },
 
@@ -434,16 +485,19 @@ const styles = {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "10px 20px",
-    backgroundColor: "#495057", // Dark grey
+    padding: "12px 24px",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     color: "#ffffff",
     borderRadius: "25px",
     textDecoration: "none",
     fontSize: "0.9rem",
     fontWeight: "600",
-    transition: "all 0.3s ease",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-    border: "1px solid #343a40",
+    letterSpacing: "0.025em",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    boxShadow: "0 8px 20px rgba(102, 126, 234, 0.3), 0 4px 8px rgba(0, 0, 0, 0.15)",
+    border: "none",
+    cursor: "pointer",
+    width: "100%",
   },
 
   buttonIcon: {
@@ -452,23 +506,25 @@ const styles = {
   },
 };
 
-// Add CSS keyframes
+// Enhanced CSS animations and hover effects
 const styleSheet = document.createElement("style");
 styleSheet.type = "text/css";
 styleSheet.innerText = `
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
   
   .profile-button:hover {
-    background-color: #343a40;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4), 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
   }
   
-  .avatar:hover {
-    transform: scale(1.05);
+  .profile-button:active {
+    transform: translateY(-1px) scale(1.01);
   }
 `;
 document.head.appendChild(styleSheet);
